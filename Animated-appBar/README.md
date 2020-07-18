@@ -1,6 +1,6 @@
 # animated-Appbar
 
-A new Flutter application.
+Animated AppBar
 
 ## Getting Started
 
