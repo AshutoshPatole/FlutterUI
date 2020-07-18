@@ -3,9 +3,6 @@
 A  Flutter Chat application UI.
 
 
-# Screenshot
-![](/Screenshot.jpg)
-
 # ⚙️ Built with Amazing Tools
 Flutter - Beautiful native apps in record time.
 
