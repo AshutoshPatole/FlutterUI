@@ -20,65 +20,7 @@ class HomeScreen extends StatelessWidget {
             child: Stack(
               fit: StackFit.loose,
               children: <Widget>[
-                BackgroundStar(
-                  left: 10,
-                  top: 0,
-                  iconSize: 5,
-                ),
-                BackgroundStar(
-                  right: 10,
-                  top: 150,
-                  iconSize: 8,
-                ),
-                BackgroundStar(
-                  left: 150,
-                  top: 40,
-                  iconSize: 4,
-                ),
-                BackgroundStar(
-                  left: 180,
-                  top: 250,
-                  iconSize: 6,
-                ),
-                BackgroundStar(
-                  left: 10,
-                  top: 270,
-                  iconSize: 10,
-                ),
-                BackgroundStar(
-                  left: 200,
-                  top: 100,
-                  iconSize: 8,
-                ),
-                BackgroundStar(
-                  bottom: 10,
-                  iconSize: 5,
-                ),
-                BackgroundStar(
-                  right: 70,
-                  bottom: 30,
-                  iconSize: 8,
-                ),
-                BackgroundStar(
-                  left: 200,
-                  top: 500,
-                  iconSize: 4,
-                ),
-                BackgroundStar(
-                  left: 180,
-                  top: 250,
-                  iconSize: 6,
-                ),
-                BackgroundStar(
-                  right: 10,
-                  bottom: 170,
-                  iconSize: 4,
-                ),
-                BackgroundStar(
-                  left: 200,
-                  top: 100,
-                  iconSize: 8,
-                ),
+                BackgroundStars(),
                 Positioned(
                   right: 0,
                   top: MediaQuery.of(context).size.height * 0.35,
