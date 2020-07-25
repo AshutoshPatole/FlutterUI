@@ -4,6 +4,7 @@ import 'package:planets/CustomWidgets/background_stars.dart';
 import 'package:planets/CustomWidgets/homeAppBar.dart';
 import 'package:planets/CustomWidgets/planetCard.dart';
 import 'package:planets/CustomWidgets/searchBox.dart';
+import 'package:planets/Screens/planetDetails.dart';
 import 'package:planets/data_models/sampleData.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -69,9 +70,20 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (context, int index) {
                           return Stack(
                             children: [
-                              PlanetCard(
-                                planetName: planetNames[index],
-                                planetNumber: planetNumbers[index],
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => PlanetDetails(
+                                                imageUrl: images[index],
+                                                planetName: planetNames[index],
+                                              )));
+                                },
+                                child: PlanetCard(
+                                  planetName: planetNames[index],
+                                  planetNumber: planetNumbers[index],
+                                ),
                               ),
                               Positioned(
                                 right: 10,
@@ -81,7 +93,10 @@ class HomeScreen extends StatelessWidget {
                                       MediaQuery.of(context).size.width * 0.5,
                                   height:
                                       MediaQuery.of(context).size.height * 0.4,
-                                  child: Image.asset(images[index]),
+                                  child: Hero(
+                                    tag: images[index],
+                                    child: Image.asset(images[index]),
+                                  ),
                                 ),
                               )
                             ],

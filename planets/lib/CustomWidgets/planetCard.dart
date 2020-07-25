@@ -46,26 +46,24 @@ class PlanetCard extends StatelessWidget {
           Positioned(
             left: 40,
             bottom: 30,
-            child: GestureDetector(
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    'Know more',
-                    style: TextStyle(
-                      color: Colors.brown,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Icon(
-                    FontAwesomeIcons.longArrowAltRight,
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'Know more',
+                  style: TextStyle(
                     color: Colors.brown,
-                  )
-                ],
-              ),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Icon(
+                  FontAwesomeIcons.longArrowAltRight,
+                  color: Colors.brown,
+                )
+              ],
             ),
           ),
         ],
