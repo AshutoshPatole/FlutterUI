@@ -1,7 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:reflctlylogin/Custom_Widgets/Bouncing_Button.dart';
 import 'package:reflctlylogin/Custom_animations/delayed_animation.dart';
 
 class LoginUI1 extends StatefulWidget {
@@ -12,31 +11,11 @@ class LoginUI1 extends StatefulWidget {
 class _LoginUI1State extends State<LoginUI1>
     with SingleTickerProviderStateMixin {
   final int delayedAmount = 500;
-  double _scale;
-  AnimationController _controller;
+
   final color = Colors.white;
 
   @override
-  void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(
-        milliseconds: 200,
-      ),
-      lowerBound: 0.0,
-      upperBound: 0.1,
-    )..addListener(() {
-        setState(() {});
-      });
-    super.initState();
-  }
-
-
-
-  @override
   Widget build(BuildContext context) {
-    _scale = 1 - _controller.value;
-
     return Column(
       children: <Widget>[
         AvatarGlow(
