@@ -4,8 +4,7 @@ import 'package:planets/Screens/homeScreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays(
-      [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+  SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(MyApp());
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:planets/CustomWidgets/background_stars.dart';
 
 class PlanetDetails extends StatelessWidget {
@@ -8,6 +9,7 @@ class PlanetDetails extends StatelessWidget {
   const PlanetDetails({@required this.imageUrl, @required this.planetName});
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
       backgroundColor: const Color(0xff181838),
       body: SafeArea(
