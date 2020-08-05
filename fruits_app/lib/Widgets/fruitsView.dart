@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fruits_app/UI/fruitDetails.dart';
 import 'package:fruits_app/models/sampleData.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,76 +15,95 @@ class FruitsView extends StatelessWidget {
       scrollDirection: Axis.vertical,
       itemCount: fruits.length,
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          decoration: BoxDecoration(
-            color: fruitColor[index].withOpacity(0.5),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                top: 10,
-                left: 20,
-                child: Text(
-                  fruits[index],
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                  ),
+        return GestureDetector(
+          onTap: () {
+            final bgColor = fruitColor[index];
+            // print("this is passed bg Color ====== $bgColor");
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FruitDetails(
+                  bgColor: bgColor,
+                  fruitDetails: fruitDetails[index],
+                  fruitName: fruits[index],
+                  imageLocation: images[index],
+                  price: price[index],
                 ),
               ),
-              Positioned(
-                left: 20,
-                top: MediaQuery.of(context).size.height * 0.04,
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      FontAwesomeIcons.dollarSign,
-                      size: 12,
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: fruitColor[index].withOpacity(0.5),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  top: 10,
+                  left: 20,
+                  child: Text(
+                    fruits[index],
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
                     ),
-                    Text(
-                      price[index],
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Positioned(
+                  left: 20,
+                  top: MediaQuery.of(context).size.height * 0.04,
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        FontAwesomeIcons.dollarSign,
+                        size: 12,
+                      ),
+                      Text(
+                        price[index],
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: index.isEven
+                      ? MediaQuery.of(context).size.height * 0.08
+                      : MediaQuery.of(context).size.height * 0.05,
+                  left: 20,
+                  child: Container(
+                    width: index.isEven ? 125 : 100,
+                    height: index.isEven ? 125 : 100,
+                    child: Image.asset(
+                      images[index],
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 1.5,
+                  right: -10,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border:
+                          Border.all(color: fruitColor[index].withOpacity(1)),
+                      borderRadius: BorderRadius.circular(14.5),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.add,
+                        color: fruitColor[index].withOpacity(1).withAlpha(3000),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Positioned(
-                top: index.isEven
-                    ? MediaQuery.of(context).size.height * 0.08
-                    : MediaQuery.of(context).size.height * 0.05,
-                left: 20,
-                child: Container(
-                  width: index.isEven ? 125 : 100,
-                  height: index.isEven ? 125 : 100,
-                  child: Image.asset(
-                    images[index],
-                    fit: BoxFit.contain,
                   ),
-                ),
-              ),
-              Positioned(
-                bottom: 1.5,
-                right: -10,
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(color: fruitColor[index].withOpacity(1)),
-                    borderRadius: BorderRadius.circular(14.5),
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.add,
-                      color: fruitColor[index].withOpacity(1).withAlpha(3000),
-                    ),
-                  ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         );
       },

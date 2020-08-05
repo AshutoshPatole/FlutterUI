@@ -20,6 +20,7 @@ class TopBar extends StatelessWidget {
             child: Icon(
               Icons.arrow_back_ios,
               size: 12,
+              
             ),
           ),
         ),
