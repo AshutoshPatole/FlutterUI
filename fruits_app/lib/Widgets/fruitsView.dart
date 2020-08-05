@@ -15,24 +15,25 @@ class FruitsView extends StatelessWidget {
       itemCount: fruits.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 10,
-          ),
           decoration: BoxDecoration(
-            color: fruitColor[index],
+            color: fruitColor[index].withOpacity(0.5),
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Stack(
             children: <Widget>[
-              Text(
-                fruits[index],
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w600,
+              Positioned(
+                top: 10,
+                left: 20,
+                child: Text(
+                  fruits[index],
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.03,
+                left: 20,
+                top: MediaQuery.of(context).size.height * 0.04,
                 child: Row(
                   children: <Widget>[
                     Icon(
@@ -52,12 +53,33 @@ class FruitsView extends StatelessWidget {
                 top: index.isEven
                     ? MediaQuery.of(context).size.height * 0.08
                     : MediaQuery.of(context).size.height * 0.05,
+                left: 20,
                 child: Container(
                   width: index.isEven ? 125 : 100,
                   height: index.isEven ? 125 : 100,
                   child: Image.asset(
                     images[index],
                     fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 1.5,
+                right: -10,
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  width: 35,
+                  height: 35,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    border: Border.all(color: fruitColor[index].withOpacity(1)),
+                    borderRadius: BorderRadius.circular(14.5),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.add,
+                      color: fruitColor[index].withOpacity(1).withAlpha(3000),
+                    ),
                   ),
                 ),
               )
