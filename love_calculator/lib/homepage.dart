@@ -43,14 +43,20 @@ class _HomePageState extends State<HomePage> {
                             double.parse("${snapshot.data.percentage}") / 100,
                         center: Text(
                           "${snapshot.data.percentage}",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20.0),
+                          style: GoogleFonts.pacifico(
+                            fontSize: 22,
+                          ),
                         ),
                         circularStrokeCap: CircularStrokeCap.butt,
                         backgroundColor: Colors.red[50],
                         progressColor: Colors.pink[400],
                       ),
-                      Text(snapshot.data.result)
+                      Text(
+                        snapshot.data.result,
+                        style: GoogleFonts.pacifico(
+                          fontSize: 20,
+                        ),
+                      )
                     ],
                   );
                 } else {
@@ -65,7 +71,18 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text("Try again"),
+                child: Text(
+                  "Try again",
+                  style: GoogleFonts.pacifico(
+                    fontSize: 18,
+                  ),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                color: Color(0xffE85569),
+                textColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               )
             ],
           );
