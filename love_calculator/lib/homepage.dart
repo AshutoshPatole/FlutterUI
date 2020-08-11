@@ -105,8 +105,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  bool isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -222,9 +220,6 @@ class _HomePageState extends State<HomePage> {
             RaisedButton(
               onPressed: () {
                 _showDialog(maleTextEditing.text, femaleTextEditing.text);
-                setState(() {
-                  isLoading = true;
-                });
               },
               child: Text(
                 'Calculate',
