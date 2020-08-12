@@ -5,7 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:loading_animations/loading_animations.dart';
+import 'package:love_calculator/widgets/customTextField.dart';
+import 'package:love_calculator/widgets/textLabel.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+
+import 'model/love.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,6 +38,28 @@ class _HomePageState extends State<HomePage> {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            maleName,
+                            style: GoogleFonts.pacifico(
+                              fontSize: 16,
+                            ),
+                          ),
+                          Icon(
+                            Icons.favorite,
+                            color: Color(0xffE85569),
+                            size: 22,
+                          ),
+                          Text(
+                            femaleName,
+                            style: GoogleFonts.pacifico(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
                       CircularPercentIndicator(
                         radius: 130.0,
                         animation: true,
@@ -107,156 +133,98 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
         statusBarColor: Colors.pink[100],
-        systemNavigationBarColor: Colors.pink[100]));
+      ),
+    );
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       body: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage("assets/bg.jpg"),
           fit: BoxFit.cover,
         )),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 180,
-              child: Image(
-                image: AssetImage("assets/logo.png"),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 30),
+                height: 180,
+                child: Image(
+                  image: AssetImage("assets/logo.png"),
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Love',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.pacifico(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xffE85569),
-                  ),
-                ),
-                Text(
-                  ' Calculator',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.pacifico(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'your name',
+                    'Love',
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.pacifico(
-                      fontSize: 25,
-                      color: Colors.black,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xffE85569),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Container(
-                    height: 40,
-                    width: 300,
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfffefefa),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: TextField(
-                      controller: maleTextEditing,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.favorite,
-                          color: Color(0xffE85569),
-                          size: 22,
-                        ),
-                        hintStyle: GoogleFonts.poppins(),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15),
                   Text(
-                    'your loved one name',
+                    ' Calculator',
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.pacifico(
-                      fontSize: 25,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w500,
                       color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    height: 40,
-                    width: 300,
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfffefefa),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: TextField(
-                      controller: femaleTextEditing,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.favorite,
-                          color: Color(0xffE85569),
-                          size: 22,
-                        ),
-                        hintStyle: GoogleFonts.poppins(),
-                        border: InputBorder.none,
-                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 50),
-            RaisedButton(
-              onPressed: () {
-                _showDialog(maleTextEditing.text, femaleTextEditing.text);
-              },
-              child: Text(
-                'Calculate',
-                style: GoogleFonts.pacifico(
-                  fontSize: 22,
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(
+                  children: [
+                    TextLabel(
+                      labelName: 'your name',
+                    ),
+                    SizedBox(height: 10),
+                    CustomTextField(
+                      controller: maleTextEditing,
+                    ),
+                    SizedBox(height: 15),
+                    TextLabel(
+                      labelName: 'your loved one name',
+                    ),
+                    SizedBox(height: 10),
+                    CustomTextField(
+                      controller: femaleTextEditing,
+                    ),
+                  ],
                 ),
               ),
-              color: Color(0xffE85569),
-              textColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+              SizedBox(height: 50),
+              RaisedButton(
+                onPressed: () {
+                  _showDialog(maleTextEditing.text, femaleTextEditing.text);
+                },
+                child: Text(
+                  'Calculate',
+                  style: GoogleFonts.pacifico(
+                    fontSize: 22,
+                  ),
+                ),
+                color: Color(0xffE85569),
+                textColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class Love {
-  final String percentage;
-  final String result;
-  final String maleName;
-  final String femaleName;
 
-  Love({
-    this.percentage,
-    this.result,
-    this.maleName,
-    this.femaleName,
-  });
-  factory Love.fromJson(Map<String, dynamic> json) {
-    return Love(
-        maleName: json['sname'],
-        femaleName: json['fname'],
-        percentage: json['percentage'],
-        result: json['result']);
-  }
-}
