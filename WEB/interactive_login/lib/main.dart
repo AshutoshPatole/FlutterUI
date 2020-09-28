@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:portfolio/Screens/homeScreen.dart';
+import 'package:portfolio/CustomWidegts/calendar.dart';
+import 'package:portfolio/Screens/homeScreen.dart';
 
-import 'Screens/loginScreen.dart';
+// import 'Screens/loginScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/CustomWidegts/addPeople.dart';
+import 'package:portfolio/CustomWidegts/calendar.dart';
 import 'package:portfolio/CustomWidegts/searchBox.dart';
+import 'package:portfolio/CustomWidegts/welcomeuser.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -72,8 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size.width);
+    double width = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: width < 791
+          ? EdgeInsets.symmetric(horizontal: 10, vertical: 20)
+          : EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       child: Column(
         children: [
           Row(
@@ -83,12 +89,23 @@ class HomeContent extends StatelessWidget {
               AddPeople(),
             ],
           ),
-          Row(
-            children: [
-              // WelcomeUser(),
-              // Calendar(),
-            ],
-          )
+          SizedBox(
+            height: 10,
+          ),
+          MediaQuery.of(context).size.width > 791
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    WelcomeUser(),
+                    Calendar(),
+                  ],
+                )
+              : Column(
+                  children: [
+                    WelcomeUser(),
+                    Calendar(),
+                  ],
+                )
         ],
       ),
     );

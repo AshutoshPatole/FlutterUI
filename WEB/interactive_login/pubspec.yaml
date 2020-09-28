@@ -15,6 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   flare_flutter: ^2.0.6
   peanut: ^3.5.1
+  table_calendar: ^2.2.3
 
 dev_dependencies:
   flutter_test:
