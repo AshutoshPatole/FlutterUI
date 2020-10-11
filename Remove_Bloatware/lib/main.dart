@@ -168,6 +168,8 @@ class InstalledApps extends StatelessWidget {
                                     color: Colors.green,
                                   ),
                                 ),
+
+                          /// @todo check whether bot is working
                           subtitle: Text('Version  : ${app.versionName}\n'
                               'System app  : ${app.systemApp}\n'
                               'APK file path: ${app.apkFilePath}\n'
