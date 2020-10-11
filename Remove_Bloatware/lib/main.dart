@@ -114,6 +114,7 @@ class InstalledApps extends StatelessWidget {
     }
   }
 
+  /// @todo Refactor Code
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Application>>(
