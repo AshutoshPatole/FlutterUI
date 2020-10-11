@@ -1,4 +1,5 @@
 import 'package:device_apps/device_apps.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,8 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.red[400],
+      ),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
       home: HomePage(),
     );
   }
@@ -23,23 +26,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _showSystemApps = false;
-  bool _onlyLaunchableApps = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Installed applications'),
+        title: const Text('Installed Apps'),
         actions: <Widget>[
           PopupMenuButton<String>(
             itemBuilder: (BuildContext context) {
               return <PopupMenuItem<String>>[
                 PopupMenuItem<String>(
-                    value: 'system_apps', child: Text('Toggle system apps')),
-                PopupMenuItem<String>(
-                  value: 'launchable_apps',
-                  child: Text('Toggle launchable apps only'),
-                )
+                    value: 'system_apps',
+                    child: _showSystemApps == true
+                        ? const Text("Exclude system apps")
+                        : const Text('Include system apps')),
               ];
             },
             onSelected: (String key) {
@@ -48,53 +49,101 @@ class _HomePageState extends State<HomePage> {
                   _showSystemApps = !_showSystemApps;
                 });
               }
-              if (key == 'launchable_apps') {
-                setState(() {
-                  _onlyLaunchableApps = !_onlyLaunchableApps;
-                });
-              }
             },
           )
         ],
       ),
-      body: _ListAppsPagesContent(
-          includeSystemApps: _showSystemApps,
-          onlyAppsWithLaunchIntent: _onlyLaunchableApps,
-          key: GlobalKey()),
+      body: InstalledApps(
+        includeSystemApps: _showSystemApps,
+        key: GlobalKey(),
+      ),
     );
   }
 }
 
-class _ListAppsPagesContent extends StatelessWidget {
+class InstalledApps extends StatelessWidget {
   final bool includeSystemApps;
-  final bool onlyAppsWithLaunchIntent;
 
-  const _ListAppsPagesContent(
-      {Key key,
-      this.includeSystemApps: false,
-      this.onlyAppsWithLaunchIntent: false})
-      : super(key: key);
+  const InstalledApps({
+    Key key,
+    this.includeSystemApps: false,
+  }) : super(key: key);
+  bool isDangerous(String appName) {
+    List<String> dangerousApps = [
+      'Google',
+      'Google Play Store',
+      'Android Services Library',
+      'Media Storage',
+      'Android shared Library',
+      'External Storage',
+      'Companion Device Manager',
+      'MmsService',
+      'ConfigUpdater',
+      'Package Access Helper',
+      'PacProcessor',
+      'androidhwext',
+      'Certificate Installer',
+      'com.android.carrierconfig',
+      'Android System',
+      'MTP host',
+      'Intent Filter Verification Service',
+      'Settings Storage',
+      'com.android.frameworkres.overlay',
+      'Input Devices',
+      'Android System WebView',
+      'Key Chain',
+      'Package installer',
+      'Google Services Framework',
+      'ProxyHandler',
+      'Work profile setup',
+      'Google Backup Transport',
+      'Settings',
+      'com.android.cts.ctsshim',
+      'VpnDialogs',
+      'Shell',
+      'Fused Location',
+      'system UI',
+      'Exchange Services',
+      'Bluetooth',
+      'com.android.cts.priv.ctsshim'
+    ];
+    if (dangerousApps.contains(appName)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Application>>(
         future: DeviceApps.getInstalledApplications(
-            includeAppIcons: true,
-            includeSystemApps: includeSystemApps,
-            onlyAppsWithLaunchIntent: onlyAppsWithLaunchIntent),
+          includeAppIcons: true,
+          includeSystemApps: includeSystemApps,
+        ),
         builder:
             (BuildContext context, AsyncSnapshot<List<Application>> snapshot) {
           if (snapshot.data == null) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.2,
+                height: MediaQuery.of(context).size.height * 0.1,
+                child: const FlareActor(
+                  "assets/loading.flr",
+                  animation: "active",
+                ),
+              ),
+            );
           } else {
             List<Application> apps = snapshot.data;
-            print(apps);
             return Scrollbar(
-              radius: Radius.circular(20),
+              radius: const Radius.circular(20),
               thickness: 5.0,
               child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     Application app = apps[index];
+
                     return Column(
                       children: <Widget>[
                         ListTile(
@@ -105,17 +154,27 @@ class _ListAppsPagesContent extends StatelessWidget {
                                 )
                               : null,
                           onTap: () => DeviceApps.openApp(app.packageName),
-                          title: Text('${app.appName} (${app.packageName})'),
-                          subtitle: Text('Version: ${app.versionName}\n'
-                              'System app: ${app.systemApp}\n'
+                          title: isDangerous(app.appName)
+                              ? Text(
+                                  '${app.appName} (${app.packageName})',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                  ),
+                                )
+                              : Text(
+                                  '${app.appName} (${app.packageName})',
+                                  style: TextStyle(
+                                    color: Colors.green,
+                                  ),
+                                ),
+                          subtitle: Text('Version  : ${app.versionName}\n'
+                              'System app  : ${app.systemApp}\n'
                               'APK file path: ${app.apkFilePath}\n'
-                              'Data dir: ${app.dataDir}\n'
-                              'Installed: ${DateTime.fromMillisecondsSinceEpoch(app.installTimeMillis).toString()}\n'
-                              'Updated: ${DateTime.fromMillisecondsSinceEpoch(app.updateTimeMillis).toString()}'),
+                              'Data dir  : ${app.dataDir}\n'
+                              'Installed  : ${DateTime.fromMillisecondsSinceEpoch(app.installTimeMillis).toString()}\n'
+                              'Updated  : ${DateTime.fromMillisecondsSinceEpoch(app.updateTimeMillis).toString()}'),
                         ),
-                        Divider(
-                          height: 2.0,
-                        )
+                        const Divider()
                       ],
                     );
                   },
