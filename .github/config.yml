@@ -1,0 +1,4 @@
+todo:
+  keyword: "@makeAnIssue"
+  blobLines: 10
+  label: false ['bug', 'enhancement']
