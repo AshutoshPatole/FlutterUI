@@ -25,7 +25,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _showSystemApps = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
