@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutterclock/Config/Data_config.dart';
 
 class SecondHandWidget extends CustomPainter {
-  final paintNumber = Paint()..color = taichiTheme[theme.numbers];
+  final paintNumber = Paint()..color = taichiTheme[theme.numbers]!;
 
   final paintIndicator = Paint()
-    ..color = taichiTheme[theme.indicatorColor]
+    ..color = taichiTheme[theme.indicatorColor]!
     ..style = PaintingStyle.fill;
 
   final paintOutCircleStroke = Paint()
-    ..color = taichiTheme[theme.shadow]
+    ..color = taichiTheme[theme.shadow]!
     ..style = PaintingStyle.stroke
     ..strokeWidth = 1;
 
@@ -27,7 +27,7 @@ class SecondHandWidget extends CustomPainter {
     final centerY = size.height / 2;
     final radius = min(size.width, size.height) * 0.4;
     final paintOutCircle = Paint()
-      ..color = taichiTheme[theme.lightTheme]
+      ..color = taichiTheme[theme.lightTheme]!
       ..style = PaintingStyle.stroke
       ..strokeWidth = radius / 8;
 

@@ -18,8 +18,8 @@ class HourHandWidget extends CustomPainter {
 
     final Gradient gradient = LinearGradient(
       colors: [
-        taichiTheme[theme.indicatorColor].withOpacity(0.1),
-        taichiTheme[theme.indicatorColor],
+        taichiTheme[theme.indicatorColor]!.withOpacity(0.1),
+        taichiTheme[theme.indicatorColor]!,
       ],
     );
 

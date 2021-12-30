@@ -3,10 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutterclock/Config/Data_config.dart';
 
-
 class MinutesWidget extends CustomPainter {
   final paintIndicator = Paint()
-    ..color = taichiTheme[theme.indicatorColor]
+    ..color = taichiTheme[theme.indicatorColor]!
     ..strokeCap = StrokeCap.round
     ..strokeWidth = 2
     ..style = PaintingStyle.fill;

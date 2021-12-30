@@ -5,11 +5,11 @@ import 'package:flutterclock/Config/Data_config.dart';
 
 class ClockParts extends CustomPainter {
   final paintRight = Paint()
-    ..color = taichiTheme[theme.lightTheme]
+    ..color = taichiTheme[theme.lightTheme]!
     ..style = PaintingStyle.fill;
 
   final paintLeft = Paint()
-    ..color = taichiTheme[theme.darkTheme]
+    ..color = taichiTheme[theme.darkTheme]!
     ..style = PaintingStyle.fill;
 
   @override

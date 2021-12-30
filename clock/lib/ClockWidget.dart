@@ -23,11 +23,11 @@ class _ClockWidgetState extends State<ClockWidget>
   var minuteNum = 0;
   var showDate;
 
-  DateTime datetime;
-  Timer timer;
+  late DateTime datetime;
+  late Timer timer;
 
-  AnimationController controller;
-  Animation animation;
+  late AnimationController controller;
+  late Animation animation;
 
   @override
   void initState() {
