@@ -9,10 +9,10 @@ const Color _mySin = const Color(0xFFF3A646);
 
 class Section {
   const Section({
-    this.title,
-    this.backgroundAsset,
-    this.leftColor,
-    this.rightColor,
+    required this.title,
+    required this.backgroundAsset,
+    required this.leftColor,
+    required this.rightColor,
   });
 
   final String title;

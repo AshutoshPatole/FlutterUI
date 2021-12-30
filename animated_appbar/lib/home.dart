@@ -1,7 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'sections.dart';
 import 'widgets.dart';
 
-Color _kAppBackgroundColor = Colors.grey[850];
+Color? _kAppBackgroundColor = Colors.grey[850];
 const Duration _kScrollDuration = const Duration(milliseconds: 500);
 const Curve _kScrollCurve = Curves.fastOutSlowIn;
 
@@ -27,10 +25,10 @@ const double _kAppBarMidHeight = 250.0;
 // the primary scrollable scrolls upwards.
 class _RenderStatusBarPaddingSliver extends RenderSliver {
   _RenderStatusBarPaddingSliver({
-    @required double maxHeight,
-    @required double scrollFactor,
-  })  : assert(maxHeight != null && maxHeight >= 0.0),
-        assert(scrollFactor != null && scrollFactor >= 1.0),
+    required double maxHeight,
+    required double scrollFactor,
+  })  : assert(maxHeight >= 0.0),
+        assert(scrollFactor >= 1.0),
         _maxHeight = maxHeight,
         _scrollFactor = scrollFactor;
 
@@ -40,7 +38,7 @@ class _RenderStatusBarPaddingSliver extends RenderSliver {
   double get maxHeight => _maxHeight;
 
   set maxHeight(double value) {
-    assert(maxHeight != null && maxHeight >= 0.0);
+    assert(maxHeight >= 0.0);
     if (_maxHeight == value) return;
     _maxHeight = value;
     markNeedsLayout();
@@ -52,7 +50,7 @@ class _RenderStatusBarPaddingSliver extends RenderSliver {
   double _scrollFactor;
 
   set scrollFactor(double value) {
-    assert(scrollFactor != null && scrollFactor >= 1.0);
+    assert(scrollFactor >= 1.0);
     if (_scrollFactor == value) return;
     _scrollFactor = value;
     markNeedsLayout();
@@ -72,11 +70,11 @@ class _RenderStatusBarPaddingSliver extends RenderSliver {
 
 class _StatusBarPaddingSliver extends SingleChildRenderObjectWidget {
   const _StatusBarPaddingSliver({
-    Key key,
-    @required this.maxHeight,
+    Key? key,
+    required this.maxHeight,
     this.scrollFactor = 5.0,
-  })  : assert(maxHeight != null && maxHeight >= 0.0),
-        assert(scrollFactor != null && scrollFactor >= 1.0),
+  })  : assert(maxHeight >= 0.0),
+        assert(scrollFactor >= 1.0),
         super(key: key);
 
   final double maxHeight;
@@ -101,9 +99,9 @@ class _StatusBarPaddingSliver extends SingleChildRenderObjectWidget {
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate({
-    @required this.minHeight,
-    @required this.maxHeight,
-    @required this.child,
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
   });
 
   final double minHeight;
@@ -153,11 +151,11 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 // until they're all visible.
 class _AllSectionsLayout extends MultiChildLayoutDelegate {
   _AllSectionsLayout({
-    this.translation,
-    this.tColumnToRow,
-    this.tCollapsed,
-    this.cardCount,
-    this.selectedIndex,
+    required this.translation,
+    required this.tColumnToRow,
+    required this.tCollapsed,
+    required this.cardCount,
+    required this.selectedIndex,
   });
 
   final Alignment translation;
@@ -166,11 +164,11 @@ class _AllSectionsLayout extends MultiChildLayoutDelegate {
   final int cardCount;
   final double selectedIndex;
 
-  Rect _interpolateRect(Rect begin, Rect end) {
+  Rect? _interpolateRect(Rect begin, Rect end) {
     return Rect.lerp(begin, end, tColumnToRow);
   }
 
-  Offset _interpolatePoint(Offset begin, Offset end) {
+  Offset? _interpolatePoint(Offset begin, Offset end) {
     return Offset.lerp(begin, end, tColumnToRow);
   }
 
@@ -207,7 +205,7 @@ class _AllSectionsLayout extends MultiChildLayoutDelegate {
       final Rect rowCardRect =
           Rect.fromLTWH(rowCardX, 0.0, rowCardWidth, size.height);
       final Rect cardRect =
-          _interpolateRect(columnCardRect, rowCardRect).shift(offset);
+          _interpolateRect(columnCardRect, rowCardRect)!.shift(offset);
       final String cardId = 'card$index';
       if (hasChild(cardId)) {
         layoutChild(cardId, BoxConstraints.tight(cardRect.size));
@@ -225,9 +223,9 @@ class _AllSectionsLayout extends MultiChildLayoutDelegate {
           rowTitleX + (rowTitleWidth - titleSize.width) / 2.0;
       final Offset columnTitleOrigin = Offset(columnTitleX, columnTitleY);
       final Offset rowTitleOrigin = Offset(centeredRowTitleX, rowTitleY);
-      final Offset titleOrigin =
+      final Offset? titleOrigin =
           _interpolatePoint(columnTitleOrigin, rowTitleOrigin);
-      positionChild('title$index', titleOrigin + offset);
+      positionChild('title$index', titleOrigin! + offset);
 
       // Layout the selection indicator for index.
       final Size indicatorSize =
@@ -245,9 +243,9 @@ class _AllSectionsLayout extends MultiChildLayoutDelegate {
       final double rowIndicatorY = titleRect.bottomCenter.dy + 16.0;
       final Offset rowIndicatorOrigin =
           Offset(centeredRowIndicatorX, rowIndicatorY);
-      final Offset indicatorOrigin =
+      final Offset? indicatorOrigin =
           _interpolatePoint(columnIndicatorOrigin, rowIndicatorOrigin);
-      positionChild('indicator$index', indicatorOrigin + offset);
+      positionChild('indicator$index', indicatorOrigin! + offset);
 
       columnCardY += columnCardHeight;
       rowCardX += rowCardWidth;
@@ -266,19 +264,16 @@ class _AllSectionsLayout extends MultiChildLayoutDelegate {
 
 class _AllSectionsView extends AnimatedWidget {
   _AllSectionsView({
-    Key key,
-    this.sectionIndex,
-    @required this.sections,
-    @required this.selectedIndex,
-    this.minHeight,
-    this.midHeight,
-    this.maxHeight,
+    Key? key,
+    required this.sectionIndex,
+    required this.sections,
+    required this.selectedIndex,
+    required this.minHeight,
+    required this.midHeight,
+    required this.maxHeight,
     this.sectionCards = const <Widget>[],
-  })  : assert(sections != null),
-        assert(sectionCards != null),
-        assert(sectionCards.length == sections.length),
+  })  : assert(sectionCards.length == sections.length),
         assert(sectionIndex >= 0 && sectionIndex < sections.length),
-        assert(selectedIndex != null),
         assert(selectedIndex.value >= 0.0 &&
             selectedIndex.value < sections.length.toDouble()),
         super(key: key, listenable: selectedIndex);
@@ -369,17 +364,16 @@ class _AllSectionsView extends AnimatedWidget {
 // visible.
 class _SnappingScrollPhysics extends ClampingScrollPhysics {
   const _SnappingScrollPhysics({
-    ScrollPhysics parent,
-    @required this.midScrollOffset,
-  })  : assert(midScrollOffset != null),
-        super(parent: parent);
+    ScrollPhysics? parent,
+    required this.midScrollOffset,
+  }) : super(parent: parent);
 
   final double midScrollOffset;
 
   @override
-  _SnappingScrollPhysics applyTo(ScrollPhysics ancestor) {
+  _SnappingScrollPhysics applyTo(ScrollPhysics? ancestor) {
     return _SnappingScrollPhysics(
-        parent: buildParent(ancestor), midScrollOffset: midScrollOffset);
+        parent: buildParent(ancestor)!, midScrollOffset: midScrollOffset);
   }
 
   Simulation _toMidScrollOffsetSimulation(double offset, double dragVelocity) {
@@ -395,9 +389,9 @@ class _SnappingScrollPhysics extends ClampingScrollPhysics {
   }
 
   @override
-  Simulation createBallisticSimulation(
+  Simulation? createBallisticSimulation(
       ScrollMetrics position, double dragVelocity) {
-    final Simulation simulation =
+    final Simulation? simulation =
         super.createBallisticSimulation(position, dragVelocity);
     final double offset = position.pixels;
 
@@ -428,7 +422,7 @@ class _SnappingScrollPhysics extends ClampingScrollPhysics {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   static const String routeName = '/animation';
 
@@ -502,7 +496,7 @@ class _HomePageState extends State<HomePage> {
   bool _handlePageNotification(ScrollNotification notification,
       PageController leader, PageController follower) {
     if (notification.depth == 0 && notification is ScrollUpdateNotification) {
-      selectedIndex.value = leader.page;
+      selectedIndex.value = leader.page!;
       if (follower.page != leader.page)
         // ignore: deprecated_member_use
         follower.position.jumpToWithoutSettling(leader.position.pixels);
@@ -510,7 +504,7 @@ class _HomePageState extends State<HomePage> {
     return false;
   }
 
-  Iterable<Widget> _allHeadingItems(double maxHeight, double midScrollOffset) {
+  List<Widget> _allHeadingItems(double maxHeight, double midScrollOffset) {
     final List<Widget> sectionCards = <Widget>[];
     for (int index = 0; index < allSections.length; index++) {
       sectionCards.add(LayoutId(
@@ -568,7 +562,7 @@ class _HomePageState extends State<HomePage> {
             child: CustomScrollView(
               controller: _scrollController,
               physics: _SnappingScrollPhysics(
-                  midScrollOffset: appBarMidScrollOffset),
+                  midScrollOffset: appBarMidScrollOffset, parent: null),
               slivers: <Widget>[
                 // Start out below the status bar, gradually move to the top of the screen.
                 _StatusBarPaddingSliver(
