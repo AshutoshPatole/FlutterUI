@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:reflctlylogin/Custom_Widgets/Bouncing_Button.dart';
-import 'package:reflctlylogin/Custom_animations/delayed_animation.dart';
-import 'package:reflctlylogin/Reflectly/AskName.dart';
-import 'package:reflctlylogin/Reflectly/LastPage.dart';
-import 'package:reflctlylogin/Reflectly/LoginUI1.dart';
+
+import '../Custom_Widgets/Bouncing_Button.dart';
+import '../Custom_animations/delayed_animation.dart';
+import '../Reflectly/AskName.dart';
+import '../Reflectly/LastPage.dart';
+import '../Reflectly/LoginUI1.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final int delayedAmount = 500;
-  AnimationController _controller;
+  late AnimationController _controller;
   PageController _pageController = new PageController();
   final color = Colors.white;
 

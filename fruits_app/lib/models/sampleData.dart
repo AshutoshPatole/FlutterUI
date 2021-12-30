@@ -11,7 +11,7 @@ List<String> fruits = [
 
 List price = ['2.45', '1.52', '4.07', '1.36', '5.10', '3.25'];
 
-List<Color> fruitColor = [
+List<Color?> fruitColor = [
   Colors.pink[100],
   Color(0xfff8e8c1),
   Color(0xff708078),

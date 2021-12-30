@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterclock/Config/Data_config.dart';
+import '../Config/Data_config.dart';
 
 class SecondHandWidget extends CustomPainter {
   final paintNumber = Paint()..color = taichiTheme[theme.numbers]!;

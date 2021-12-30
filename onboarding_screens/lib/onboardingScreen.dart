@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:onboarding_screens/homeScreen.dart';
+import 'homeScreen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -16,13 +15,13 @@ class AnimatedCircle extends AnimatedWidget {
   final Color color;
 
   AnimatedCircle({
-    Key key,
-    @required this.animation,
-    this.horizontalTween,
-    this.horizontalAnimation,
-    @required this.color,
-    @required this.flip,
-    @required this.tween,
+    Key? key,
+    required this.animation,
+    required this.horizontalTween,
+    required this.horizontalAnimation,
+    required this.color,
+    required this.flip,
+    required this.tween,
   })  : assert(flip == 1 || flip == -1),
         super(key: key, listenable: animation);
 
@@ -70,11 +69,11 @@ class OnBoardingScreen extends StatefulWidget {
 
 class _OnBoardingScreenState extends State<OnBoardingScreen>
     with TickerProviderStateMixin {
-  AnimationController animationController;
-  Animation startAnimation;
-  Animation endAnimation;
-  Animation horizontalAnimation;
-  PageController pageController;
+  late AnimationController animationController;
+  late Animation<double> startAnimation;
+  late Animation<double> endAnimation;
+  late Animation<double> horizontalAnimation;
+  late PageController pageController;
 
   @override
   void initState() {
@@ -164,6 +163,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                 children: <Widget>[
                   AnimatedCircle(
                     animation: startAnimation,
+                    horizontalAnimation: horizontalAnimation,
                     color: model.foreGroundColor,
                     flip: 1.0,
                     tween: Tween<double>(begin: 1.0, end: Global.radius),

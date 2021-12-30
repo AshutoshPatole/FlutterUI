@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fruits_app/Widgets/appBar.dart';
+import '../Widgets/appBar.dart';
 
 class FruitDetails extends StatelessWidget {
   final Color bgColor;
@@ -10,14 +10,14 @@ class FruitDetails extends StatelessWidget {
   final String fruitDetails;
   final String imageLocation;
 
-  const FruitDetails(
-      {Key key,
-      this.bgColor,
-      this.fruitName,
-      this.price,
-      this.fruitDetails,
-      this.imageLocation})
-      : super(key: key);
+  const FruitDetails({
+    Key? key,
+    required this.bgColor,
+    required this.fruitName,
+    required this.price,
+    required this.fruitDetails,
+    required this.imageLocation,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

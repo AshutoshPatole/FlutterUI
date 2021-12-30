@@ -7,13 +7,14 @@ class CustomAvatar extends StatefulWidget {
   final double circleRadius;
   final double iconRadius;
 
-  CustomAvatar(
-      {Key key,
-      this.bgColor,
-      this.iconColor,
-      this.iconData,
-      this.circleRadius,
-      this.iconRadius});
+  CustomAvatar({
+    Key? key,
+    required this.bgColor,
+    required this.iconColor,
+    required this.iconData,
+    required this.circleRadius,
+    required this.iconRadius,
+  });
 
   @override
   _CustomAvatarState createState() => _CustomAvatarState();

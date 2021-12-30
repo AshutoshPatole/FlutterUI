@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_app/Widgets/appBar.dart';
-import 'package:fruits_app/Widgets/fruitsView.dart';
-import 'package:fruits_app/Widgets/searchBox.dart';
+import '../Widgets/appBar.dart';
+import '../Widgets/fruitsView.dart';
+import '../Widgets/searchBox.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 

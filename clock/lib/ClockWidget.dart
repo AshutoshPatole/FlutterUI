@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutterclock/Config/Data_config.dart';
-import 'package:flutterclock/Widgets/clockParts.dart';
-import 'package:flutterclock/Widgets/hourHandWiget.dart';
-import 'package:flutterclock/Widgets/minuteHandWidget.dart';
-import 'package:flutterclock/Widgets/secondHandWidget.dart';
+import 'Config/Data_config.dart';
+import 'Widgets/clockParts.dart';
+import 'Widgets/hourHandWiget.dart';
+import 'Widgets/minuteHandWidget.dart';
+import 'Widgets/secondHandWidget.dart';
 import 'package:intl/intl.dart';
 
 class ClockWidget extends StatefulWidget {

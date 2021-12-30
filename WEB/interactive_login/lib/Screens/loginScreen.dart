@@ -11,7 +11,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TeddyController _teddyController;
+  late TeddyController _teddyController;
   @override
   initState() {
     _teddyController = TeddyController();

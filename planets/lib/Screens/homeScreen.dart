@@ -1,18 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:planets/CustomWidgets/background_stars.dart';
-import 'package:planets/CustomWidgets/homeAppBar.dart';
-import 'package:planets/CustomWidgets/planetCard.dart';
-import 'package:planets/CustomWidgets/searchBox.dart';
-import 'package:planets/Screens/planetDetails.dart';
-import 'package:planets/data_models/sampleData.dart';
+import '../CustomWidgets/background_stars.dart';
+import '../CustomWidgets/homeAppBar.dart';
+import '../CustomWidgets/planetCard.dart';
+import '../CustomWidgets/searchBox.dart';
+import 'planetDetails.dart';
+import '../data_models/sampleData.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
-
     return Scaffold(
       backgroundColor: const Color(0xff181838),
       body: SafeArea(

@@ -1,4 +1,4 @@
-import 'package:chatapp/Screens/MainPage.dart';
+import 'Screens/MainPage.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

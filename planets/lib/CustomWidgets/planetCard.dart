@@ -5,7 +5,10 @@ class PlanetCard extends StatelessWidget {
   final String planetNumber;
   final String planetName;
 
-  const PlanetCard({this.planetNumber, this.planetName});
+  const PlanetCard({
+    required this.planetNumber,
+    required this.planetName,
+  });
 
   @override
   Widget build(BuildContext context) {

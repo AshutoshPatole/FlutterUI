@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AskName extends StatefulWidget {
   final navigate;
 
-  const AskName({Key key, this.navigate}) : super(key: key);
+  const AskName({Key? key, this.navigate}) : super(key: key);
 
   @override
   _AskNameState createState() => _AskNameState();

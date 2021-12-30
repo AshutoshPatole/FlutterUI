@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttersidebar/CustomWidgets/Nav_items.dart';
+import '../CustomWidgets/Nav_items.dart';
 
 class BackPage extends StatefulWidget {
   @override
@@ -45,9 +45,8 @@ class _BackPageState extends State<BackPage> {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.orange,
-                    borderRadius: BorderRadius.circular(10.0)
-                  ),
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(10.0)),
                   child: MenuItem(
                     iconData: Icons.home,
                     menuItem: "Home",

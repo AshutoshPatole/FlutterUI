@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class OnlineAvatar extends StatefulWidget {
   final String link;
 
-  const OnlineAvatar({Key key, this.link});
+  const OnlineAvatar({Key? key, required this.link});
 
   @override
   _OnlineAvatarState createState() => _OnlineAvatarState();

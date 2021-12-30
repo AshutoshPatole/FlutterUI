@@ -3,18 +3,18 @@ description: Online Fruits shopping app UI
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^1.1.0
-  flutter_staggered_grid_view: ^0.3.1
-  path_provider: ^1.6.11
-  font_awesome_flutter: ^8.8.1
-  fluttertoast: ^7.0.2
+  google_fonts: ^2.2.0
+  flutter_staggered_grid_view: ^0.5.0
+  path_provider: ^2.0.8
+  font_awesome_flutter: ^9.2.0
+  fluttertoast: ^8.0.8
 
-  cupertino_icons: ^0.1.3
+  cupertino_icons: ^1.0.4
 
 dev_dependencies:
   flutter_test:

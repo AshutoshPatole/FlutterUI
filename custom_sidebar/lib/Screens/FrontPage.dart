@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttersidebar/Models/dataModel.dart';
+import '../Models/dataModel.dart';
 
 class FrontPage extends StatefulWidget {
   @override

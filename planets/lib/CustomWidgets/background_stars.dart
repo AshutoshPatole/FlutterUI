@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:planets/CustomWidgets/star.dart';
+
+import 'star.dart';
 
 class BackgroundStars extends StatelessWidget {
   @override

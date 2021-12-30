@@ -6,7 +6,6 @@ List newsImages = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQz7mqjTjjvregTHDjAxmR_6_pbca-PuGVO0VY2iIQ5t45N-dFW&usqp=CAU',
   'https://media.kasperskydaily.com/wp-content/uploads/sites/92/2015/12/06023350/fingerprints-FB-1.jpg',
   'https://cdn.mos.cms.futurecdn.net/5NyzBxijspGUiFyCiz9F4-1200-80.jpg',
-
 ];
 
 List newsTitle = [
@@ -17,7 +16,6 @@ List newsTitle = [
   'Google Go',
   'Fingerprint Version 3.2',
   'Android worth 50 Billions',
-
 ];
 
 List newsDetail = [
@@ -28,5 +26,4 @@ List newsDetail = [
   'A new Google Launcher is in technical preview. This will provide a new way of',
   'Fingerprint security is becoming better and better and with the launch of version 3.2',
   'Yesterday Google released it\'s second developer android 11 preview ...',
-
 ];

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fruits_app/UI/fruitDetails.dart';
-import 'package:fruits_app/models/sampleData.dart';
+import '../UI/fruitDetails.dart';
+import '../models/sampleData.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FruitsView extends StatelessWidget {
@@ -23,7 +22,7 @@ class FruitsView extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => FruitDetails(
-                  bgColor: bgColor,
+                  bgColor: bgColor!,
                   fruitDetails: fruitDetails[index],
                   fruitName: fruits[index],
                   imageLocation: images[index],
@@ -34,7 +33,7 @@ class FruitsView extends StatelessWidget {
           },
           child: Container(
             decoration: BoxDecoration(
-              color: fruitColor[index].withOpacity(0.5),
+              color: fruitColor[index]!.withOpacity(0.5),
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Stack(
@@ -91,13 +90,14 @@ class FruitsView extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                       border:
-                          Border.all(color: fruitColor[index].withOpacity(1)),
+                          Border.all(color: fruitColor[index]!.withOpacity(1)),
                       borderRadius: BorderRadius.circular(14.5),
                     ),
                     child: Center(
                       child: Icon(
                         Icons.add,
-                        color: fruitColor[index].withOpacity(1).withAlpha(3000),
+                        color:
+                            fruitColor[index]!.withOpacity(1).withAlpha(3000),
                       ),
                     ),
                   ),

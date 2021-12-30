@@ -1,5 +1,6 @@
-import 'package:chatapp/Data/Utils.dart';
 import 'package:flutter/material.dart';
+
+import '../Data/Utils.dart';
 
 class PinkColor extends StatelessWidget {
   @override

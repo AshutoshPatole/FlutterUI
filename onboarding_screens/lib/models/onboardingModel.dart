@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:onboarding_screens/Global/globals.dart';
+import '../Global/globals.dart';
 
 class HomeModel extends ChangeNotifier {
   int _index = 0;

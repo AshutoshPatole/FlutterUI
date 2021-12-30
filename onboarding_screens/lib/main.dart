@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:onboarding_screens/models/onboardingModel.dart';
-import 'package:onboarding_screens/onboardingScreen.dart';
+import 'models/onboardingModel.dart';
+import 'onboardingScreen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -9,7 +9,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return ChangeNotifierProvider(
       create: (context) => HomeModel(),
       child: MaterialApp(

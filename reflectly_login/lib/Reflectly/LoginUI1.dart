@@ -1,7 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:reflctlylogin/Custom_animations/delayed_animation.dart';
+import '../Custom_animations/delayed_animation.dart';
 
 class LoginUI1 extends StatefulWidget {
   @override

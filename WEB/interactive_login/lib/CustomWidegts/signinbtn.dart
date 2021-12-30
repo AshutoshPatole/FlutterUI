@@ -5,12 +5,12 @@ class SigninButton extends StatelessWidget {
   final Gradient gradient;
   final double width;
   final double height;
-  final Function onPressed;
+  final VoidCallback? onPressed;
 
   const SigninButton({
-    Key key,
-    @required this.child,
-    this.gradient,
+    Key? key,
+    required this.child,
+    required this.gradient,
     this.width = double.infinity,
     this.height = 50.0,
     this.onPressed,

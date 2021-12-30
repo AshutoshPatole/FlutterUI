@@ -1,5 +1,5 @@
-import 'package:chatapp/CustomAvatars/OnlineAvatar.dart';
-import 'package:chatapp/CustomAvatars/ProfileAvatar.dart';
+import '../CustomAvatars/OnlineAvatar.dart';
+import '../CustomAvatars/ProfileAvatar.dart';
 import 'package:flutter/material.dart';
 
 class Data extends StatelessWidget {

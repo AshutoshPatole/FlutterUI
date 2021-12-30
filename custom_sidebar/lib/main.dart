@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttersidebar/Screens/CustomSidebar.dart';
+import 'Screens/CustomSidebar.dart';
 
 void main() => runApp(MyApp());
 

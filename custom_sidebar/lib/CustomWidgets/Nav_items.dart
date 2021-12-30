@@ -4,7 +4,11 @@ class MenuItem extends StatefulWidget {
   final IconData iconData;
   final String menuItem;
 
-  const MenuItem({Key key, this.iconData, this.menuItem}) : super(key: key);
+  const MenuItem({
+    Key? key,
+    required this.iconData,
+    required this.menuItem,
+  }) : super(key: key);
 
   @override
   _MenuItemState createState() => _MenuItemState();

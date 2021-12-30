@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import 'input_helper.dart';
 
@@ -10,15 +9,15 @@ typedef void TextChanged(String text);
 
 // Helper widget to track caret position.
 class TrackingTextInput extends StatefulWidget {
-  TrackingTextInput(
-      {Key key,
-      this.onCaretMoved,
-      this.onTextChanged,
-      this.hint,
-      this.label,
-      this.style,
-      this.isObscured = false})
-      : super(key: key);
+  TrackingTextInput({
+    Key? key,
+    required this.onCaretMoved,
+    required this.onTextChanged,
+    required this.hint,
+    required this.label,
+    required this.style,
+    this.isObscured = false,
+  }) : super(key: key);
   final CaretMoved onCaretMoved;
   final TextChanged onTextChanged;
   final String hint;
@@ -32,13 +31,13 @@ class TrackingTextInput extends StatefulWidget {
 class _TrackingTextInputState extends State<TrackingTextInput> {
   final GlobalKey _fieldKey = GlobalKey();
   final TextEditingController _textController = TextEditingController();
-  Timer _debounceTimer;
+  late Timer _debounceTimer;
   @override
   initState() {
     _textController.addListener(() {
       // We debounce the listener as sometimes the caret position is updated after the listener
       // this assures us we get an accurate caret position.
-      if (_debounceTimer?.isActive ?? false) _debounceTimer.cancel();
+      if (_debounceTimer.isActive) _debounceTimer.cancel();
       _debounceTimer = Timer(const Duration(milliseconds: 100), () {
         if (_fieldKey.currentContext != null) {
           // Find the render editable in the field.
@@ -46,14 +45,10 @@ class _TrackingTextInputState extends State<TrackingTextInput> {
               _fieldKey.currentContext.findRenderObject();
           Offset caretPosition = getCaretPosition(fieldBox);
 
-          if (widget.onCaretMoved != null) {
-            widget.onCaretMoved(caretPosition);
-          }
+          widget.onCaretMoved(caretPosition);
         }
       });
-      if (widget.onTextChanged != null) {
-        widget.onTextChanged(_textController.text);
-      }
+      widget.onTextChanged(_textController.text);
     });
     super.initState();
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_app/Widgets/menuIcon.dart';
+import 'menuIcon.dart';
 
 class TopBar extends StatelessWidget {
   final Color color;
 
-  const TopBar({this.color});
+  const TopBar({required this.color});
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,7 +20,6 @@ class TopBar extends StatelessWidget {
             child: Icon(
               Icons.arrow_back_ios,
               size: 12,
-              
             ),
           ),
         ),

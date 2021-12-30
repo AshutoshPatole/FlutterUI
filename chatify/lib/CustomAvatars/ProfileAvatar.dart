@@ -4,7 +4,7 @@ class ProfileAvatar extends StatefulWidget {
   final String link;
   final String name;
 
-  const ProfileAvatar({Key key, this.link, this.name});
+  const ProfileAvatar({Key? key, required this.link, required this.name});
 
   @override
   _ProfileAvatarState createState() => _ProfileAvatarState();
@@ -48,7 +48,7 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
 class ProfilePicture extends StatefulWidget {
   final String link;
 
-  const ProfilePicture({Key key, this.link});
+  const ProfilePicture({Key? key, required this.link});
 
   @override
   _ProfilePictureState createState() => _ProfilePictureState();

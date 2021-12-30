@@ -10,10 +10,9 @@ class BouncingButton extends StatefulWidget {
 class _BouncingButtonState extends State<BouncingButton>
     with SingleTickerProviderStateMixin {
   double scale = 0.0;
-  Animation _sizeAnimation;
-  double _animationValue;
-
-  AnimationController _animationController;
+  late Animation _sizeAnimation;
+  late double _animationValue;
+  late AnimationController _animationController;
 
   @override
   void initState() {

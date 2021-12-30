@@ -1,12 +1,12 @@
-import 'package:chatapp/ColorBubbles/greenColor.dart';
-import 'package:chatapp/ColorBubbles/orangeColor.dart';
-import 'package:chatapp/ColorBubbles/pinkcolor.dart';
-import 'package:chatapp/ColorBubbles/yellowColor.dart';
-import 'package:chatapp/CustomAvatars/OnlineAvatar.dart';
-import 'package:chatapp/CustomAvatars/ProfileAvatar.dart';
-import 'package:chatapp/Data/Data_File.dart';
-import 'package:chatapp/Data/Utils.dart';
-import 'package:chatapp/Screens/CreateGroup.dart';
+import '../ColorBubbles/greenColor.dart';
+import '../ColorBubbles/orangeColor.dart';
+import '../ColorBubbles/pinkcolor.dart';
+import '../ColorBubbles/yellowColor.dart';
+import '../CustomAvatars/OnlineAvatar.dart';
+import '../CustomAvatars/ProfileAvatar.dart';
+import '../Data/Data_File.dart';
+import '../Data/Utils.dart';
+import 'CreateGroup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

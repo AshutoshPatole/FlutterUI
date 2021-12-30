@@ -1,12 +1,12 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:reflctlylogin/Reflectly/HomePage.dart';
+import 'HomePage.dart';
 
 class LastPage extends StatefulWidget {
   final fn;
 
-  const LastPage({Key key, this.fn}) : super(key: key);
+  const LastPage({Key? key, this.fn}) : super(key: key);
 
   @override
   _LastPageState createState() => _LastPageState();

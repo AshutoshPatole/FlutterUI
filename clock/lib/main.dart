@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterclock/ClockWidget.dart';
+import 'ClockWidget.dart';
 
 void main() => runApp(MyApp());
 

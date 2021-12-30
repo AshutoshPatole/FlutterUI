@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutterclock/Config/Data_config.dart';
+import '../Config/Data_config.dart';
 
 class HourHandWidget extends CustomPainter {
   var hour;
